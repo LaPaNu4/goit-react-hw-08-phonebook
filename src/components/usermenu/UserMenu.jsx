@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { selectUserData } from "redux/authReducer";
 import { logoutUserThunk } from "redux/operations";
 
@@ -9,7 +8,6 @@ export const UserMenu = () => {
 
      const handleLogOut = () => {
          dispatch(logoutUserThunk());
-
     };
     
 
