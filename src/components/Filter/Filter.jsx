@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilters, updateFilter } from 'redux/filterSlice';
-
-
+import {  updateFilter } from 'redux/filter/filterSlice';
+import { selectFilters } from 'redux/filter/selectFilt';
 
 const Filter = () => {
   const filter = useSelector(selectFilters);

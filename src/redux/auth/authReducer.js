@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUserThunk, logoutUserThunk, refreshUserThunk, registerUserThunk } from './operations';
-
+import {
+  loginUserThunk,
+  logoutUserThunk,
+  refreshUserThunk,
+  registerUserThunk,
+} from './operations';
 
 const initialState = {
   isLoading: false,
@@ -38,8 +42,6 @@ const authSlice = createSlice({
         state.authentificated = true;
         state.userData = action.payload.user;
         state.token = action.payload.token;
-        
-
       })
       .addCase(loginUserThunk.rejected, (state, action) => {
         state.isLoading = false;
@@ -74,13 +76,5 @@ const authSlice = createSlice({
         state.error = action.payload;
       }),
 });
-
-
-export const selectUserLoading = state => state.auth.isLoading;
-export const selectUserError = state => state.auth.error;
-export const selectToken = state => state.auth.token;
-export const selectUserData = state => state.auth.userData;
-export const selectAuthentificated = state => state.auth.authentificated;
-
 
 export const authReducer = authSlice.reducer;

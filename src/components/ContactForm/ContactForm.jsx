@@ -1,22 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addContactThunk, selectUserContacts } from "redux/contactsReducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { addContactThunk } from 'redux/contact/operationsCont';
+import { selectUserContacts } from 'redux/contact/selectorCont';
+
 
 function ContactForm() {
-    const dispatch = useDispatch();
-    const contacts = useSelector(selectUserContacts);
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectUserContacts);
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      const form = e.currentTarget;
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
 
-      const name = form.elements.contactName.value;
-      const number = form.elements.contactNumber.value;
+    const name = form.elements.contactName.value;
+    const number = form.elements.contactNumber.value;
 
-      if (contacts.some(contact => contact.name === name))
-        return alert(`Contact with name ${name} already exists!`);
+    if (contacts.some(contact => contact.name === name))
+      return alert(`Contact with name ${name} already exists!`);
 
-      dispatch(addContactThunk({ name, number }));
-    };
+    dispatch(addContactThunk({ name, number }));
+  };
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { selectAuthentificated } from "redux/authReducer";
-import { registerUserThunk } from "redux/operations";
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
+import { registerUserThunk } from 'redux/auth/operations';
+import { selectAuthentificated } from 'redux/auth/selectors';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const RegisterPage = () => {
     const form = e.currentTarget;
 
     const name = form.elements.userName.value;
-    
+
     const email = form.elements.userEmail.value;
     const password = form.elements.userPassword.value;
     dispatch(
@@ -22,7 +23,7 @@ const RegisterPage = () => {
       })
     );
   };
-   if (authenticated) return <Navigate to="/contacts" />;
+  if (authenticated) return <Navigate to="/contacts" />;
 
   return (
     <div>

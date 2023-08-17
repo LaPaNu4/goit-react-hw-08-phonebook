@@ -1,16 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { deleteContactThunk, selectUserContacts } from "redux/contactsReducer";
-import { selectFilters } from "redux/filterSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContactThunk } from 'redux/contact/operationsCont';
+import { selectUserContacts } from 'redux/contact/selectorCont';
+import { selectFilters } from 'redux/filter/selectFilt';
+
 
 
 const ContactList = () => {
-    const dispatch = useDispatch();
-    const contacts = useSelector(selectUserContacts);
-    const filter = useSelector(selectFilters);
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectUserContacts);
+  const filter = useSelector(selectFilters);
 
- 
   const getFilteredContacts = () => {
-   if (!contacts) return []
+    if (!contacts) return [];
     return contacts.filter(
       contact =>
         contact.name &&
@@ -19,9 +20,9 @@ const ContactList = () => {
   };
   const filteredContacts = getFilteredContacts();
 
-const handleDeleteContact = contactId => {
-  dispatch(deleteContactThunk(contactId));
-};
+  const handleDeleteContact = contactId => {
+    dispatch(deleteContactThunk(contactId));
+  };
 
   return (
     <ul>

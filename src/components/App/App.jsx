@@ -1,16 +1,9 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
-import {
-  selectAuthentificated,
-  selectToken,
-  
-} from 'redux/authReducer';
-import {  refreshUserThunk } from 'redux/operations';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+import { refreshUserThunk } from 'redux/auth/operations';
+import { selectAuthentificated, selectToken } from 'redux/auth/selectors';
 
 const LoginPage = lazy(() => import('pages/login/login'));
 const RegisterPage = lazy(() => import('pages/register/register'));
@@ -27,8 +20,6 @@ export const App = () => {
 
     dispatch(refreshUserThunk());
   }, [token, dispatch, authentificated]);
-
-
 
   return (
     <>

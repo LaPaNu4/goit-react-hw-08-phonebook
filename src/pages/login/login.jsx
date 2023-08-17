@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { selectAuthentificated } from 'redux/authReducer';
-import { loginUserThunk } from 'redux/operations';
+
+import { loginUserThunk } from 'redux/auth/operations';
+import { selectAuthentificated } from 'redux/auth/selectors';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -10,8 +11,8 @@ const LoginPage = () => {
     e.preventDefault();
     const form = e.currentTarget;
 
-const email = form.userEmail.value;
-const password = form.userPassword.value;
+    const email = form.userEmail.value;
+    const password = form.userPassword.value;
 
     dispatch(
       loginUserThunk({
@@ -20,7 +21,7 @@ const password = form.userPassword.value;
       })
     );
   };
-   if (authenticated) return <Navigate to="/contacts" />;
+  if (authenticated) return <Navigate to="/contacts" />;
   return (
     <div>
       <h1>Login Into Your Account</h1>

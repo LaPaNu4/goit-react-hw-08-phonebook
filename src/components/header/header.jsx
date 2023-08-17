@@ -1,7 +1,7 @@
 import { UserMenu } from 'components/usermenu/UserMenu';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { selectAuthentificated, } from 'redux/authReducer';
+import { selectAuthentificated } from 'redux/auth/selectors';
 
 
 const Header = () => {

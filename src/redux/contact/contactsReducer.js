@@ -1,44 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { instance } from "./operations";
+import {createSlice } from '@reduxjs/toolkit';
+import { addContactThunk, deleteContactThunk, requestContactsThunk } from './operationsCont';
 
-export const requestContactsThunk = createAsyncThunk(
-  'contacts/getAll',
-  async (_, thunkApi) => {
-    try {
-      const { data } = await instance.get('/contacts');
 
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const addContactThunk = createAsyncThunk(
-  'contacts/addContact',
-  async (contactData, thunkApi) => {
-    try {
-      const { data } = await instance.post('/contacts', contactData);
-
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteContactThunk = createAsyncThunk(
-  'contacts/deleteContact',
-  async (contactId, thunkApi) => {
-    try {
-      const { data } = await instance.delete(`/contacts/${contactId}`);
-
-      return data;
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
 
 
 const initialState = {
@@ -46,7 +9,6 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -97,8 +59,6 @@ const contactsSlice = createSlice({
       }),
 });
 
-export const selectUserContacts = state => state.contacts.contacts;
-export const selectContactsIsLoading = state => state.contacts.isLoading;
-export const selectContactsError = state => state.contacts.error;
+
 
 export const contactsReducer = contactsSlice.reducer;
