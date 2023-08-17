@@ -1,72 +1,49 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  BrowserRouter as Router,
-  NavLink,
   Route,
   Routes,
+  Navigate,
 } from 'react-router-dom';
-import { selectAuthentificated, selectToken, selectUserData, } from 'redux/authReducer';
-import { logoutUserThunk, refreshUserThunk } from 'redux/operations';
+import {
+  selectAuthentificated,
+  selectToken,
+  
+} from 'redux/authReducer';
+import {  refreshUserThunk } from 'redux/operations';
 
-
-const LoginPage = lazy(()=> import('pages/login/login'))
+const LoginPage = lazy(() => import('pages/login/login'));
 const RegisterPage = lazy(() => import('pages/register/register'));
-const ContactsPage = lazy(()=> import('pages/contacts/contacts'));
+const ContactsPage = lazy(() => import('pages/contacts/contacts'));
+const Header = lazy(() => import('components/header/header'));
 
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const authentificated = useSelector(selectAuthentificated);
-  const userData = useSelector(selectUserData);
 
+  useEffect(() => {
+    if (!token || authentificated) return;
 
+    dispatch(refreshUserThunk());
+  }, [token, dispatch, authentificated]);
 
- useEffect(() => {
-   if (!token || authentificated) return;
-
-   dispatch(refreshUserThunk());
- }, [token, dispatch, authentificated]);
-  
-  
-  const handleLogOut = () => {
-    dispatch(logoutUserThunk());
-  };
 
 
   return (
-    <Router>
-      <div>
-        <header>
-          <div>
-            <nav>
-              {authentificated ? (
-                <>
-                  <NavLink to="/contacts">Contacts</NavLink>
-                  <div>
-                    <p>{userData.email}</p>
-                    <button onClick={handleLogOut}>Logout</button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <NavLink to="/login">Login</NavLink>
-                  <NavLink to="/register">Register</NavLink>
-                </>
-              )}
-            </nav>
-          </div>
-        </header>
-        <main>
-          <Suspense fallback={<h2>Loading...</h2>}>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/contacts" element={<ContactsPage/>} />
-            </Routes>
-          </Suspense>
-        </main>
-      </div>
-    </Router>
+    <>
+      <Header />
+      <main>
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Routes>
+            <Route path="/" element={<h2>Welcome to Contact</h2>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
+      </main>
+    </>
   );
 };
