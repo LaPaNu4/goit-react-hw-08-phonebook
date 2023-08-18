@@ -25,12 +25,14 @@ const ContactsPage = () => {
   if (!authentificated) return <Navigate to="/login" />;
   return (
     <section>
-      <ContactForm />
-      <Filter />
-
-      {isLoading && <h2>Loading...</h2>}
-      {error && <p>Oops, some error occured... {error}</p>}
-      <ContactList />
+      <div>
+        <ContactForm />
+        <Filter />
+  
+        {isLoading && <h2>Loading...</h2>}
+        {error && <p>Oops, some error occured... {error}</p>}
+        <ContactList />
+      </div>
     </section>
   );
 };

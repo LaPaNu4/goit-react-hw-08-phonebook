@@ -50,6 +50,7 @@ export const loginUserThunk = createAsyncThunk(
       async (_, thunkApi) => {
         const state = thunkApi.getState();
         const token = state.auth.token;
+        if (!token) return thunkApi.rejectWithValue(null);
 
         try {
           setToken(token);

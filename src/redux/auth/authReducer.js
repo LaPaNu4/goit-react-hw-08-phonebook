@@ -12,6 +12,7 @@ const initialState = {
   userData: null,
   token: null,
   authentificated: false,
+  isRefreshUser: true
 };
 
 const authSlice = createSlice({
@@ -55,10 +56,12 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.authentificated = true;
         state.userData = action.payload;
+        state.isRefreshUser= false
       })
       .addCase(refreshUserThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+        state.isRefreshUser= false
       })
       // ----- LOGOUT -----
       .addCase(logoutUserThunk.pending, state => {

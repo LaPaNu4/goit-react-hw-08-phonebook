@@ -23,22 +23,24 @@ const LoginPage = () => {
   };
   if (authenticated) return <Navigate to="/contacts" />;
   return (
-    <div>
-      <h1>Login Into Your Account</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email:</p>
-          <input name="userEmail" type="email" required />
-        </label>
-        <br />
-        <label>
-          <p>Password:</p>
-          <input name="userPassword" type="password" required minLength={7} />
-        </label>
-        <br />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+    <section>
+      <div>
+        <h1>Login Into Your Account</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Email:</p>
+            <input name="userEmail" type="email" required />
+          </label>
+          <br />
+          <label>
+            <p>Password:</p>
+            <input name="userPassword" type="password" required minLength={7} />
+          </label>
+          <br />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </section>
   );
 };
 export default LoginPage;

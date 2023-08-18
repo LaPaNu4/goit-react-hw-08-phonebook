@@ -8,21 +8,26 @@ const Header = () => {
   const authentificated = useSelector(selectAuthentificated);
 
   return (
-    <div>
-      <nav>
-        {authentificated ? (
-          <>
-            <NavLink to="/contacts">Contacts</NavLink>
-            <UserMenu />
-          </>
-        ) : (
-          <>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register">Register</NavLink>
-          </>
-        )}
-      </nav>
-    </div>
+    <header>
+      <section>
+        <div>
+          <nav>
+            <NavLink to="/">Home</NavLink>
+            {authentificated ? (
+              <>
+                <NavLink to="/contacts">Contacts</NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/register">Register</NavLink>
+              </>
+            )}
+          </nav>
+          {authentificated && <UserMenu />}
+        </div>
+      </section>
+    </header>
   );
 };
 

@@ -13,7 +13,7 @@ export const UserMenu = () => {
 
   return (
     <div>
-      <p>{userData.email}</p>
+      {userData?(<p>{userData.email}</p>):<p>email</p>}
       <button onClick={handleLogOut}>Logout</button>
     </div>
   );
