@@ -1,9 +1,11 @@
 import { Suspense, lazy, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { refreshUserThunk } from 'redux/auth/operations';
 import { selectAuthentificated, selectIsRefreshUser, selectToken } from 'redux/auth/selectors';
+
 
 const LoginPage = lazy(() => import('pages/login/login'));
 const RegisterPage = lazy(() => import('pages/register/register'));
@@ -18,14 +20,13 @@ export const App = () => {
   const isRefreshUser = useSelector(selectIsRefreshUser);
 
   useEffect(() => {
-    // if (!token || authentificated) return;
-
     dispatch(refreshUserThunk());
   }, [token, dispatch, authentificated]);
 
   if(isRefreshUser) return <p>Loading...</p>;
   return (
     <>
+      <Toaster />
       <Header />
       <main>
         <Suspense fallback={<h2>Loading...</h2>}>

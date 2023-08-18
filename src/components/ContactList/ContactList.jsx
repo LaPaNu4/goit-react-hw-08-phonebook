@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteContactThunk } from 'redux/contact/operationsCont';
 import { selectUserContacts } from 'redux/contact/selectorCont';
 import { selectFilters } from 'redux/filter/selectFilt';
+import { ULstyled } from './ContactList.styled';
 
 
 
@@ -25,20 +26,20 @@ const ContactList = () => {
   };
 
   return (
-    <ul>
+    <ULstyled>
       {filteredContacts.map(contact => (
-        <li key={contact.id}>
+        <li className="Item" key={contact.id}>
           {contact.name}: {contact.number}
           <button
+            className="button-13"
             type="button"
             onClick={() => handleDeleteContact(contact.id)}
-            style={{ marginLeft: '10px' }}
           >
             Delete
           </button>
         </li>
       ))}
-    </ul>
+    </ULstyled>
   );
 };
 

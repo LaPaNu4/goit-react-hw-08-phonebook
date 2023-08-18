@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import { loginUserThunk } from 'redux/auth/operations';
 import { selectAuthentificated } from 'redux/auth/selectors';
+import { Section } from './login.styled';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const LoginPage = () => {
   };
   if (authenticated) return <Navigate to="/contacts" />;
   return (
-    <section>
+    <Section>
       <div>
         <h1>Login Into Your Account</h1>
         <form onSubmit={handleSubmit}>
@@ -37,10 +38,12 @@ const LoginPage = () => {
             <input name="userPassword" type="password" required minLength={7} />
           </label>
           <br />
-          <button type="submit">Sign In</button>
+          <button className="button-13" type="submit">
+            Sign In
+          </button>
         </form>
       </div>
-    </section>
+    </Section>
   );
 };
 export default LoginPage;

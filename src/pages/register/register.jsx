@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 import { registerUserThunk } from 'redux/auth/operations';
 import { selectAuthentificated } from 'redux/auth/selectors';
+import { Section } from './register.styled';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const RegisterPage = () => {
   if (authenticated) return <Navigate to="/contacts" />;
 
   return (
-    <section>
+    <Section>
       <div>
         <h1>Register Your Account</h1>
         <form onSubmit={handleSubmit}>
@@ -45,10 +46,12 @@ const RegisterPage = () => {
             <input name="userPassword" type="password" required minLength={7} />
           </label>
           <br />
-          <button type="submit">Sign Up</button>
+          <button className="button-13" type="submit">
+            Sign Up
+          </button>
         </form>
       </div>
-    </section>
+    </Section>
   );
 };
 export default RegisterPage;

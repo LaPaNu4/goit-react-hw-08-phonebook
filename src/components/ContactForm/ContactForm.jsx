@@ -1,6 +1,8 @@
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactThunk } from 'redux/contact/operationsCont';
 import { selectUserContacts } from 'redux/contact/selectorCont';
+import { FormBTN } from './ContactForm.styled';
 
 
 function ContactForm() {
@@ -15,7 +17,7 @@ function ContactForm() {
     const number = form.elements.contactNumber.value;
 
     if (contacts.some(contact => contact.name === name))
-      return alert(`Contact with name ${name} already exists!`);
+      return toast.error('This contact is already existing');
 
     dispatch(addContactThunk({ name, number }));
     form.reset()
@@ -43,7 +45,7 @@ function ContactForm() {
         />
       </label>
       <br />
-      <button type="submit">Add contact</button>
+      <FormBTN type="submit">Add contact</FormBTN>
     </form>
   );
 }

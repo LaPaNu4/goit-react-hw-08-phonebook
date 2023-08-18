@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { selectAuthentificated } from 'redux/auth/selectors';
 import { requestContactsThunk } from 'redux/contact/operationsCont';
 import { selectContactsError, selectContactsIsLoading } from 'redux/contact/selectorCont';
+import { Section } from './contacts.styled';
 
 
 
@@ -24,7 +25,7 @@ const ContactsPage = () => {
 
   if (!authentificated) return <Navigate to="/login" />;
   return (
-    <section>
+    <Section>
       <div>
         <ContactForm />
         <Filter />
@@ -33,7 +34,7 @@ const ContactsPage = () => {
         {error && <p>Oops, some error occured... {error}</p>}
         <ContactList />
       </div>
-    </section>
+    </Section>
   );
 };
 export default ContactsPage;

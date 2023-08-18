@@ -1,10 +1,12 @@
+import { Section } from "./Home.styled"
+
 const HomePage = () => {
     return (
-        <section>
+        <Section>
             <div>
-                <h1>Welcome to ContactsBook hope it's gona be usfull fo you</h1>
+                <h1>Welcome to ContactsBook </h1>
             </div>
-        </section>
+        </Section>
     )
 }
 

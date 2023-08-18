@@ -2,6 +2,7 @@ import { UserMenu } from 'components/usermenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { selectAuthentificated } from 'redux/auth/selectors';
+import { Section, Div, } from './header.styled';
 
 
 const Header = () => {
@@ -9,24 +10,32 @@ const Header = () => {
 
   return (
     <header>
-      <section>
-        <div>
-          <nav>
-            <NavLink to="/">Home</NavLink>
+      <Section>
+        <Div>
+          <nav className="nav">
+            <NavLink className={'button-8'} to="/">
+              Home
+            </NavLink>
             {authentificated ? (
               <>
-                <NavLink to="/contacts">Contacts</NavLink>
+                <NavLink className={'button-8'} to="/contacts">
+                  Contacts
+                </NavLink>
               </>
             ) : (
               <>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/register">Register</NavLink>
+                <NavLink className={'button-8'} to="/login">
+                  Login
+                </NavLink>
+                <NavLink className={'button-8'} to="/register">
+                  Register
+                </NavLink>
               </>
             )}
           </nav>
           {authentificated && <UserMenu />}
-        </div>
-      </section>
+        </Div>
+      </Section>
     </header>
   );
 };
