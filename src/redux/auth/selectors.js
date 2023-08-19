@@ -3,4 +3,4 @@ export const selectUserError = state => state.auth.error;
 export const selectToken = state => state.auth.token;
 export const selectUserData = state => state.auth.userData;
 export const selectAuthentificated = state => state.auth.authentificated;
-export const selectIsRefreshUser = state => state.auth.isRefresh;
+export const selectIsRefreshUser = state => state.auth.isRefreshUser;

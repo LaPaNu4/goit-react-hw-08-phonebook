@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import { refreshUserThunk } from 'redux/auth/operations';
-import { selectAuthentificated, selectIsRefreshUser, selectToken } from 'redux/auth/selectors';
+import {  selectIsRefreshUser,  } from 'redux/auth/selectors';
 
 
 const LoginPage = lazy(() => import('pages/login/login'));
@@ -15,13 +15,11 @@ const HomePage = lazy(() => import('pages/Home/Home'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const authentificated = useSelector(selectAuthentificated);
   const isRefreshUser = useSelector(selectIsRefreshUser);
 
   useEffect(() => {
     dispatch(refreshUserThunk());
-  }, [token, dispatch, authentificated]);
+  }, [ dispatch, ]);
 
   if(isRefreshUser) return <p>Loading...</p>;
   return (
