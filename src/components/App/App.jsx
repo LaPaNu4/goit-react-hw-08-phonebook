@@ -21,13 +21,13 @@ export const App = () => {
     dispatch(refreshUserThunk());
   }, [ dispatch, ]);
 
-  if(isRefreshUser) return <p>Loading...</p>;
+  if(isRefreshUser) return <h2>Loading...</h2>;
   return (
     <>
-      <Toaster />
-      <Header />
-      <main>
-        <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Toaster />
+        <Header />
+        <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -35,8 +35,8 @@ export const App = () => {
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
-        </Suspense>
-      </main>
+        </main>
+      </Suspense>
     </>
   );
 };
